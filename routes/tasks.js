@@ -1,11 +1,14 @@
+//Aquí está la API. Se ejecutan requests, llama al model Task, responde al cliente
+
 const express = require("express");
 const router = express.Router();
 const Task = require("../models/Task.js");
 
-//CREATE TASK
-router.post("/create", async(req, res) => {
+//CREATE TASK - post
+
+router.post("/create", async(req, res) => {  // Esto tiene que coincidir con Swagger. Ejemplo:"/create": { post: {...} }
     try {
-        const task = await Task.create({...req.body, completed: false });
+        const task = await Task.create({...req.body, completed: false });  //aquí está usando el model
         res.status(201).send({ message: "Task successfully created", task });
     } catch (error) {
         console.error(error);
@@ -16,6 +19,7 @@ router.post("/create", async(req, res) => {
 });
 
 //GET TASKS
+    //buscamos TODAS LAS TAREAS
 
 router.get("/", async(req, res) => {
     try {
@@ -48,7 +52,7 @@ router.put("/markAsCompleted/:_id", async(req, res) => {
             const task = await Task.findByIdAndUpdate(
                 req.params._id, {
                     completed: true,
-                }, { new: true }
+                }, { new: true }  // con esto devolvemos el doc actualizado
             );
             res.send({ message: "Task successfully updated", task });
         } catch (error) {
@@ -64,7 +68,7 @@ router.put("/markAsCompleted/:_id", async(req, res) => {
 
     router.put("/id/:_id", async(req, res) => {
         try {
-            const task = await Task.findByIdAndUpdate(req.params._id, req.body, { new: true })
+            const task = await Task.findByIdAndUpdate(req.params._id, req.body, { new: true })  // aquí le decimos que actualice lo que venga del body
             res.send({ message: "task successfully updated", task });
         } catch (error) {
             console.error(error);

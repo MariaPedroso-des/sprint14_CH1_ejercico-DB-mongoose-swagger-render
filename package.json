@@ -1,17 +1,18 @@
 {
     "name": "ejercicio-mongo-solucion",
     "version": "1.0.0",
-    "description": "",
+    "description": "CRUD de tareas con Express, MongoDB, Mongoose y Swagger",
     "main": "index.js",
     "scripts": {
+        "start": "node index.js",
         "dev": "nodemon index.js"
     },
     "author": "",
     "license": "ISC",
     "dependencies": {
-        "dotenv": "^16.4.1",
-        "express": "^4.18.2",
-        "mongoose": "^8.1.1",
+        "dotenv": "^16.6.1",
+        "express": "^4.22.1",
+        "mongoose": "^8.22.0",
         "swagger-ui-express": "^5.0.0"
     },
     "devDependencies": {
